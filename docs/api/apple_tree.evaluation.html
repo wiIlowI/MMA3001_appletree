@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module apple_tree.evaluation</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="apple_tree.html" class="white">apple_tree</a>.evaluation</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/mnt/data/MMA3001_appletree_submission/src/apple_tree/evaluation.py">/mnt/data/MMA3001_appletree_submission/src/apple_tree/evaluation.py</a></td></tr></table>
+    <p><span class="code">Evaluation&nbsp;helpers&nbsp;corresponding&nbsp;to&nbsp;the&nbsp;MMA3001&nbsp;depth-metric&nbsp;notebook.</span></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="numpy.html">numpy</a><br>
+</td><td class="multicolumn"><a href="time.html">time</a><br>
+</td><td class="multicolumn"></td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-compare_block_interpolators"><strong>compare_block_interpolators</strong></a>(depth, seed=42, radius=6)</dt><dd><span class="code">Evaluate&nbsp;algorithms&nbsp;on&nbsp;randomly&nbsp;withheld&nbsp;12x12&nbsp;spatial&nbsp;blocks.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;depth&nbsp;(ndarray):&nbsp;2D&nbsp;depth-code&nbsp;image.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;seed&nbsp;(int):&nbsp;Reproducible&nbsp;random&nbsp;seed.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;radius&nbsp;(float):&nbsp;Prediction&nbsp;radius&nbsp;in&nbsp;pixels.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dict:&nbsp;Validation-selected&nbsp;algorithm&nbsp;and&nbsp;per-method&nbsp;metrics.</span></dd></dl>
+ <dl><dt><a name="-compare_interpolators"><strong>compare_interpolators</strong></a>(depth, seed=42, radius=6)</dt><dd><span class="code">Evaluate&nbsp;nearest&nbsp;and&nbsp;IDW&nbsp;interpolation&nbsp;on&nbsp;random&nbsp;withheld&nbsp;pixels.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;depth&nbsp;(ndarray):&nbsp;2D&nbsp;depth-code&nbsp;image.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;seed&nbsp;(int):&nbsp;Reproducible&nbsp;random&nbsp;seed.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;radius&nbsp;(float):&nbsp;Prediction&nbsp;radius&nbsp;in&nbsp;pixels.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dict:&nbsp;Validation-selected&nbsp;algorithm&nbsp;and&nbsp;per-method&nbsp;metrics.</span></dd></dl>
+ <dl><dt><a name="-compare_methods"><strong>compare_methods</strong></a>(depth, train, val, test, radius=6)</dt><dd><span class="code">Compare&nbsp;nearest&nbsp;and&nbsp;IDW&nbsp;methods&nbsp;on&nbsp;validation&nbsp;and&nbsp;withheld&nbsp;test&nbsp;pixels.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;depth&nbsp;(ndarray):&nbsp;2D&nbsp;raw&nbsp;depth-code&nbsp;image.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;train&nbsp;(ndarray):&nbsp;Known-pixel&nbsp;boolean&nbsp;mask.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;val&nbsp;(ndarray):&nbsp;Validation-pixel&nbsp;boolean&nbsp;mask.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;test&nbsp;(ndarray):&nbsp;Final&nbsp;test-pixel&nbsp;boolean&nbsp;mask.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;radius&nbsp;(float):&nbsp;Spatial&nbsp;prediction&nbsp;radius&nbsp;in&nbsp;pixels.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dict:&nbsp;Selected&nbsp;method&nbsp;(based&nbsp;on&nbsp;validation&nbsp;only),&nbsp;along&nbsp;with<br>
+&nbsp;&nbsp;&nbsp;&nbsp;RMSE,&nbsp;MAE,&nbsp;coverage,&nbsp;predicted&nbsp;count,&nbsp;requested&nbsp;count&nbsp;and&nbsp;runtime<br>
+&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;each&nbsp;method&nbsp;and&nbsp;split.&nbsp;Test&nbsp;predictions&nbsp;are&nbsp;not&nbsp;used&nbsp;to&nbsp;select<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;method.</span></dd></dl>
+</td></tr></table>
+</body></html>

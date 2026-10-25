@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module apple_tree.depth</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="apple_tree.html" class="white">apple_tree</a>.depth</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/mnt/data/MMA3001_appletree_submission/src/apple_tree/depth.py">/mnt/data/MMA3001_appletree_submission/src/apple_tree/depth.py</a></td></tr></table>
+    <p><span class="code">Numerical&nbsp;functions&nbsp;used&nbsp;in&nbsp;the&nbsp;depth&nbsp;and&nbsp;common-support&nbsp;notebooks.<br>
+&nbsp;<br>
+Algorithms&nbsp;and&nbsp;defaults&nbsp;correspond&nbsp;to&nbsp;the&nbsp;final&nbsp;Colab&nbsp;notebooks:<br>
+random&nbsp;5%&nbsp;validation/5%&nbsp;test;&nbsp;12x12&nbsp;spatial&nbsp;blocks;&nbsp;radius&nbsp;6&nbsp;pixels;<br>
+nearest-neighbour&nbsp;or&nbsp;inverse-distance&nbsp;weighting&nbsp;with&nbsp;up&nbsp;to&nbsp;8&nbsp;neighbours.<br>
+&nbsp;<br>
+The&nbsp;value&nbsp;zero&nbsp;is&nbsp;assumed&nbsp;to&nbsp;indicate&nbsp;invalid&nbsp;depth.&nbsp;This&nbsp;assumption&nbsp;and<br>
+the&nbsp;physical&nbsp;depth&nbsp;scale&nbsp;were&nbsp;not&nbsp;verified&nbsp;against&nbsp;camera&nbsp;documentation.</span></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="numpy.html">numpy</a><br>
+</td><td class="multicolumn"></td><td class="multicolumn"></td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-interpolate_depth"><strong>interpolate_depth</strong></a>(depth, train, query, method='nearest', radius=6)</dt><dd><span class="code">Predict&nbsp;withheld&nbsp;depth&nbsp;codes&nbsp;using&nbsp;nearby&nbsp;observed&nbsp;depth&nbsp;pixels.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;depth&nbsp;(ndarray):&nbsp;Two-dimensional&nbsp;image&nbsp;containing&nbsp;numeric&nbsp;depth&nbsp;codes.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;train&nbsp;(ndarray):&nbsp;Boolean&nbsp;mask&nbsp;of&nbsp;known&nbsp;pixels&nbsp;used&nbsp;as&nbsp;input.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;query&nbsp;(ndarray):&nbsp;Boolean&nbsp;mask&nbsp;of&nbsp;pixels&nbsp;to&nbsp;predict.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;method&nbsp;(str):&nbsp;``'nearest'``&nbsp;or&nbsp;``'idw'``&nbsp;(inverse&nbsp;distance&nbsp;squared).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;radius&nbsp;(float):&nbsp;Maximum&nbsp;Euclidean&nbsp;search&nbsp;distance,&nbsp;in&nbsp;pixels.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;tuple[ndarray,&nbsp;ndarray]:&nbsp;Float-valued&nbsp;predictions,&nbsp;with&nbsp;NaN&nbsp;at<br>
+&nbsp;&nbsp;&nbsp;&nbsp;unsupported&nbsp;locations,&nbsp;and&nbsp;a&nbsp;boolean&nbsp;prediction-support&nbsp;mask.<br>
+&nbsp;<br>
+Raises:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ValueError:&nbsp;For&nbsp;unsupported&nbsp;interpolation&nbsp;methods&nbsp;or&nbsp;invalid&nbsp;radius.<br>
+&nbsp;<br>
+Notes:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;IDW&nbsp;uses&nbsp;up&nbsp;to&nbsp;8&nbsp;nearest&nbsp;known&nbsp;pixels&nbsp;and&nbsp;weights&nbsp;proportional<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;1&nbsp;/&nbsp;distance**2.&nbsp;Nearest&nbsp;uses&nbsp;an&nbsp;Euclidean&nbsp;distance&nbsp;transform.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Neither&nbsp;operation&nbsp;converts&nbsp;raw&nbsp;depth&nbsp;codes&nbsp;into&nbsp;metric&nbsp;distances.</span></dd></dl>
+ <dl><dt><a name="-make_block_split"><strong>make_block_split</strong></a>(depth, block_size=12, seed=42)</dt><dd><span class="code">Make&nbsp;a&nbsp;spatially&nbsp;blocked&nbsp;split&nbsp;using&nbsp;square&nbsp;regions.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;depth&nbsp;(ndarray):&nbsp;Two-dimensional&nbsp;depth-code&nbsp;image.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;block_size&nbsp;(int):&nbsp;Side&nbsp;length&nbsp;of&nbsp;withheld&nbsp;blocks,&nbsp;in&nbsp;pixels.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;seed&nbsp;(int):&nbsp;Random&nbsp;seed&nbsp;used&nbsp;to&nbsp;select&nbsp;blocks.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;tuple[ndarray,&nbsp;ndarray,&nbsp;ndarray]:&nbsp;Train,&nbsp;validation,&nbsp;test&nbsp;masks.</span></dd></dl>
+ <dl><dt><a name="-make_split"><strong>make_split</strong></a>(depth, seed=42, block_size=None)</dt><dd><span class="code">Create&nbsp;non-overlapping&nbsp;training,&nbsp;validation&nbsp;and&nbsp;test&nbsp;masks.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;depth&nbsp;(ndarray):&nbsp;Two-dimensional&nbsp;depth&nbsp;image&nbsp;with&nbsp;zero&nbsp;as&nbsp;invalid.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;seed&nbsp;(int):&nbsp;Seed&nbsp;controlling&nbsp;repeatable&nbsp;random&nbsp;selection.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;block_size&nbsp;(int&nbsp;or&nbsp;None):&nbsp;If&nbsp;None,&nbsp;hold&nbsp;out&nbsp;random&nbsp;valid&nbsp;pixels.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Otherwise,&nbsp;hold&nbsp;out&nbsp;square&nbsp;blocks&nbsp;with&nbsp;at&nbsp;least&nbsp;50%&nbsp;valid&nbsp;pixels.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;tuple[ndarray,&nbsp;ndarray,&nbsp;ndarray]:&nbsp;Boolean&nbsp;(train,&nbsp;val,&nbsp;test)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;masks,&nbsp;each&nbsp;the&nbsp;same&nbsp;shape&nbsp;as&nbsp;``depth``.&nbsp;Validation/test&nbsp;use<br>
+&nbsp;&nbsp;&nbsp;&nbsp;approximately&nbsp;5%&nbsp;each&nbsp;of&nbsp;valid&nbsp;pixels&nbsp;or&nbsp;eligible&nbsp;blocks.<br>
+&nbsp;<br>
+Notes:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;This&nbsp;is&nbsp;deterministic&nbsp;for&nbsp;a&nbsp;fixed&nbsp;image&nbsp;and&nbsp;random&nbsp;seed.&nbsp;It&nbsp;is<br>
+&nbsp;&nbsp;&nbsp;&nbsp;not&nbsp;a&nbsp;split&nbsp;into&nbsp;independent&nbsp;trees;&nbsp;each&nbsp;mask&nbsp;is&nbsp;drawn&nbsp;within<br>
+&nbsp;&nbsp;&nbsp;&nbsp;one&nbsp;individual&nbsp;depth&nbsp;image.</span></dd></dl>
+</td></tr></table>
+</body></html>

@@ -1,0 +1,5 @@
+design,method,shared_rmse,shared_mae,common_fraction,individual_coverage
+random_pixels,idw,1.2918,0.3806,1.0,1.0
+random_pixels,nearest,1.6352,0.3417,1.0,1.0
+spatial_blocks_12,idw,3.6333,1.1459,0.9393,0.9393
+spatial_blocks_12,nearest,4.0222,1.0571,0.9393,0.9932
