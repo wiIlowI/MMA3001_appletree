@@ -22,7 +22,7 @@ The original dataset is provided through google drive access from Monash Univers
 
 
 
-The experiments use 12 depth image observations across six tree identifiers and summer/winter conditions.
+The experiments uses 12 depth image observations across six tree identifiers and summer/winter conditions.
 
 
 
@@ -76,6 +76,4 @@ Camera calibration and ground truth annotation meanings have not been verified.
 
 
 Calibrated 3D tree skeleton is not included in this project.
-
-
 
